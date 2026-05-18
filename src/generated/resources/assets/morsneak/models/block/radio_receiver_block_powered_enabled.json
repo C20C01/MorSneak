@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "morsneak:block/radio_receiver_block_top_powered",
+    "side": "morsneak:block/radio_receiver_block_side_powered_enabled"
+  }
+}

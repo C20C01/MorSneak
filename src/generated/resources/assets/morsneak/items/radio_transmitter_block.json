@@ -1,0 +1,6 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "morsneak:block/radio_transmitter_block"
+  }
+}

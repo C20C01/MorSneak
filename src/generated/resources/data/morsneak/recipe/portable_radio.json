@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "C": "minecraft:compass",
+    "R": "morsneak:radio_receiver_block",
+    "T": "morsneak:radio_transmitter_block"
+  },
+  "pattern": [
+    " R ",
+    " C ",
+    " T "
+  ],
+  "result": {
+    "id": "morsneak:portable_radio"
+  }
+}

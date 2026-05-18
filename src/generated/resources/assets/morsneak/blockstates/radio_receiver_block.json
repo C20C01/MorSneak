@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "enabled=false,powered=false": {
+      "model": "morsneak:block/radio_receiver_block"
+    },
+    "enabled=false,powered=true": {
+      "model": "morsneak:block/radio_receiver_block_powered"
+    },
+    "enabled=true,powered=false": {
+      "model": "morsneak:block/radio_receiver_block_enabled"
+    },
+    "enabled=true,powered=true": {
+      "model": "morsneak:block/radio_receiver_block_powered_enabled"
+    }
+  }
+}

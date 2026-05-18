@@ -1,0 +1,14 @@
+{
+  "beep": {
+    "sounds": [
+      "morsneak:beep"
+    ],
+    "subtitle": "sound.morsneak.beep"
+  },
+  "fa": {
+    "sounds": [
+      "morsneak:fa"
+    ],
+    "subtitle": "sound.morsneak.fa"
+  }
+}
