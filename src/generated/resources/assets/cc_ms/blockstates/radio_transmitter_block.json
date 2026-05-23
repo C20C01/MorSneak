@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "enabled=false,powered=false": {
+      "model": "cc_ms:block/radio_transmitter_block"
+    },
+    "enabled=false,powered=true": {
+      "model": "cc_ms:block/radio_transmitter_block_powered"
+    },
+    "enabled=true,powered=false": {
+      "model": "cc_ms:block/radio_transmitter_block_enabled"
+    },
+    "enabled=true,powered=true": {
+      "model": "cc_ms:block/radio_transmitter_block_powered_enabled"
+    }
+  }
+}

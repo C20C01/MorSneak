@@ -1,0 +1,15 @@
+{
+  "model": {
+    "type": "minecraft:condition",
+    "component": "cc_ms:selected_frequency",
+    "on_false": {
+      "type": "minecraft:model",
+      "model": "cc_ms:item/portable_radio"
+    },
+    "on_true": {
+      "type": "minecraft:model",
+      "model": "cc_ms:item/portable_radio_on"
+    },
+    "property": "minecraft:has_component"
+  }
+}

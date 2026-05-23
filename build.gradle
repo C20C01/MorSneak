@@ -31,7 +31,7 @@ repositories {
 }
 
 base {
-    archivesName = mod_id
+    archivesName = "${project.mod_id}-neoforge-${project.minecraft_version}"
 }
 
 // Mojang ships Java 25 to end users in 26.1.2, so mods should target Java 25.

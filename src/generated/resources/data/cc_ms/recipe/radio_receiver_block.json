@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "L": "minecraft:lodestone",
+    "R": "minecraft:redstone"
+  },
+  "pattern": [
+    " R ",
+    "RLR",
+    " R "
+  ],
+  "result": {
+    "id": "cc_ms:radio_receiver_block"
+  }
+}

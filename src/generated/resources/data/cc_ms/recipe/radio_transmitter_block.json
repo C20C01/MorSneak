@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "Q": "minecraft:quartz",
+    "R": "cc_ms:radio_receiver_block"
+  },
+  "pattern": [
+    " Q ",
+    "QRQ",
+    " Q "
+  ],
+  "result": {
+    "id": "cc_ms:radio_transmitter_block"
+  }
+}

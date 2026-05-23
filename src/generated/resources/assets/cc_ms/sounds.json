@@ -1,0 +1,14 @@
+{
+  "beep": {
+    "sounds": [
+      "cc_ms:beep"
+    ],
+    "subtitle": "sound.cc_ms.beep"
+  },
+  "fa": {
+    "sounds": [
+      "cc_ms:fa"
+    ],
+    "subtitle": "sound.cc_ms.fa"
+  }
+}
