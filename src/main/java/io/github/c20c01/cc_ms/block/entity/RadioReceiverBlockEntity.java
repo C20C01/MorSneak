@@ -22,7 +22,7 @@ public class RadioReceiverBlockEntity extends AbstractRadioBlockEntity implement
         if (level == null) return;
         if (level.getBlockTicks().willTickThisTick(worldPosition, MorSneak.RADIO_RECEIVER_BLOCK.get())) return;
 
-        if (power != signal.getPower()){
+        if (power != signal.getPower()) {
             level.scheduleTick(worldPosition, MorSneak.RADIO_RECEIVER_BLOCK.get(), 2, TickPriority.EXTREMELY_HIGH);
         }
     }

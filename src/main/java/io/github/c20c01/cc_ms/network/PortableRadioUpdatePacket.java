@@ -39,8 +39,8 @@ public record PortableRadioUpdatePacket(byte slot, byte operation, byte data) im
             if (!radio.is(MorSneak.PORTABLE_RADIO.get())) return;
 
             switch (packet.operation()) {
-                case UPDATE_SIGNAL_CODE -> PortableRadio.updateSignalCode(radio, packet.data());
-                case UPDATE_SOUND_CODE -> PortableRadio.updateSoundCode(radio, packet.data());
+                case UPDATE_SIGNAL_CODE -> radio.set(MorSneak.SIGNAL_CODE, packet.data());
+                case UPDATE_SOUND_CODE -> radio.set(MorSneak.SOUND_CODE, packet.data());
                 case REMOVE_FREQUENCY -> PortableRadio.removeFrequency(radio, packet.data());
                 case SELECT_FREQUENCY -> PortableRadio.selectFrequency(radio, packet.data());
             }

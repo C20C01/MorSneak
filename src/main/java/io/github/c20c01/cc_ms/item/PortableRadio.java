@@ -136,12 +136,4 @@ public class PortableRadio extends Item {
 
         radio.set(MorSneak.SELECTED_FREQUENCY, frequencies.get(index));
     }
-
-    public static void updateSignalCode(ItemStack radio, byte signalCode) {
-        radio.set(MorSneak.SIGNAL_CODE, signalCode);
-    }
-
-    public static void updateSoundCode(ItemStack radio, byte soundCode) {
-        radio.set(MorSneak.SOUND_CODE, soundCode);
-    }
 }
