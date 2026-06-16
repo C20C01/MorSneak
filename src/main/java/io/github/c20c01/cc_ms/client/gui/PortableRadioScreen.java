@@ -4,7 +4,6 @@ import com.mojang.blaze3d.platform.InputConstants;
 import io.github.c20c01.cc_ms.MorSneak;
 import io.github.c20c01.cc_ms.client.buzzer.BuzzInstance;
 import io.github.c20c01.cc_ms.client.buzzer.RadioBuzzer;
-import io.github.c20c01.cc_ms.config.BuzzConfigEntry;
 import io.github.c20c01.cc_ms.network.PortableRadioUpdatePacket;
 import io.github.c20c01.cc_ms.radio.RadioSignal;
 import net.minecraft.client.Minecraft;
@@ -58,9 +57,6 @@ public class PortableRadioScreen extends Screen {
     private static final Tooltip MIC_LABEL_TOOLTIP = Tooltip.create(Component.translatable(MorSneak.TEXT_KEY_PORTABLE_RADIO_MIC));
     private static final Component EMPTY_LABEL = Component.literal("-").withColor(DARK_GRAY);
 
-    private static final Component LOOP_SOUND_SUFFIX = Component.literal(" 🔁");
-    private static final Component RANDOM_PITCH_SUFFIX = Component.literal(" 🎲");
-
     private static final Component SELECT_FREQUENCY_TOOLTIP_SUFFIX = Component.translatable(MorSneak.TEXT_KEY_PORTABLE_RADIO_SELECT).withColor(GREEN);
     private static final Component UNSELECT_FREQUENCY_TOOLTIP_SUFFIX = Component.translatable(MorSneak.TEXT_KEY_PORTABLE_RADIO_UNSELECT).withColor(RED);
     private static final Component DELETE_FREQUENCY_TOOLTIP_SUFFIX = Component.translatable(MorSneak.TEXT_KEY_PORTABLE_RADIO_DELETE).withColor(RED);
@@ -85,7 +81,7 @@ public class PortableRadioScreen extends Screen {
     private byte soundCode;
 
     private final ArrayList<GlobalPos> frequencies;
-    private List<BuzzConfigEntry> sounds;
+    private List<Component> soundTitles;
 
     private BuzzInstance previewBuzz;
 
@@ -346,7 +342,7 @@ public class PortableRadioScreen extends Screen {
     }
 
     private void updateSoundButtons() {
-        sounds = RadioBuzzer.getInstance().getBuzzFactory().getConfigEntries();
+        soundTitles = RadioBuzzer.getInstance().getBuzzFactory().getSoundTitles();
         int startIndex = page * 4;
         for (int i = 0; i < 4; i++) {
             updateSoundButtons(selectButtons[i], startIndex + i);
@@ -354,19 +350,14 @@ public class PortableRadioScreen extends Screen {
     }
 
     private void updateSoundButtons(Button button, int index) {
-        if (index >= sounds.size()) {
+        if (index >= soundTitles.size()) {
             button.setMessage(EMPTY_LABEL);
             button.setTooltip(null);
             button.active = false;
             return;
         }
 
-        BuzzConfigEntry sound = sounds.get(index);
-        MutableComponent message = Component.literal(sound.getLocation());
-        if (sound.isLooping()) message.append(LOOP_SOUND_SUFFIX);
-        if (sound.isPitchRandom()) message.append(RANDOM_PITCH_SUFFIX);
-        if (index == soundCode) message.withColor(0x00FF00);
-        button.setMessage(message);
+        button.setMessage(index == soundCode ? soundTitles.get(index).copy().withColor(GREEN) : soundTitles.get(index));
         button.setTooltip(null);
         button.active = true;
     }
@@ -386,7 +377,7 @@ public class PortableRadioScreen extends Screen {
     private int getTotalPages() {
         int size = switch (mode) {
             case RADIO, DELETE -> frequencies.size();
-            case SOUND -> sounds.size();
+            case SOUND -> soundTitles.size();
         };
         return (size - 1) / 4 + 1;
     }
