@@ -13,12 +13,13 @@ import net.minecraft.client.renderer.item.ItemModel;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 
 @SuppressWarnings("NullableProblems")
-@EventBusSubscriber(modid = MorSneak.ID)
+@EventBusSubscriber(modid = MorSneak.ID, value = Dist.CLIENT)
 public class MyModelProvider extends ModelProvider {
     public MyModelProvider(PackOutput output) {
         super(output, MorSneak.ID);
