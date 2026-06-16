@@ -11,7 +11,7 @@ import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 @SuppressWarnings("NullableProblems")
 public record RadioSignalOffsetPacket(RadioSignalOffset offset) implements CustomPacketPayload {
-    public static final Type<RadioSignalOffsetPacket> TYPE = new Type<>(Identifier.fromNamespaceAndPath(MorSneak.ID, "offset"));
+    public static final Type<RadioSignalOffsetPacket> TYPE = new Type<>(Identifier.fromNamespaceAndPath(MorSneak.ID, NetworkRegistration.RADIO_SIGNAL_OFFSET_PATH));
     public static final StreamCodec<FriendlyByteBuf, RadioSignalOffsetPacket> STREAM_CODEC = CustomPacketPayload.codec(RadioSignalOffsetPacket::write, RadioSignalOffsetPacket::new);
 
     private RadioSignalOffsetPacket(FriendlyByteBuf input) {

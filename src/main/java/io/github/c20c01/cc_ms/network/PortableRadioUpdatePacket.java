@@ -17,7 +17,7 @@ public record PortableRadioUpdatePacket(byte slot, byte operation, byte data) im
     public static final byte REMOVE_FREQUENCY = 2;
     public static final byte SELECT_FREQUENCY = 3;
 
-    public static final CustomPacketPayload.Type<PortableRadioUpdatePacket> TYPE = new CustomPacketPayload.Type<>(Identifier.fromNamespaceAndPath(MorSneak.ID, "portable_radio_update"));
+    public static final CustomPacketPayload.Type<PortableRadioUpdatePacket> TYPE = new CustomPacketPayload.Type<>(Identifier.fromNamespaceAndPath(MorSneak.ID, NetworkRegistration.PORTABLE_RADIO_UPDATE_PATH));
     public static final StreamCodec<FriendlyByteBuf, PortableRadioUpdatePacket> STREAM_CODEC = CustomPacketPayload.codec(PortableRadioUpdatePacket::write, PortableRadioUpdatePacket::new);
 
     private PortableRadioUpdatePacket(FriendlyByteBuf input) {
