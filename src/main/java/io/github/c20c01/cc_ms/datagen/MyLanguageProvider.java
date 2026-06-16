@@ -113,32 +113,32 @@ public class MyLanguageProvider extends LanguageProvider {
             default -> throw new IllegalStateException();
         });
 
-        this.add("morsneak.configuration.buzz_sounds", switch (this.locale) {
+        this.add(MorSneak.ID + ".configuration.buzz_sounds", switch (this.locale) {
             case EN_US -> "Radio Buzzer Sounds";
             case ZH_CN -> "电台声音设置";
             default -> throw new IllegalStateException();
         });
-        this.add("morsneak.configuration.buzz_sounds.button", switch (this.locale) {
+        this.add(MorSneak.ID + ".configuration.buzz_sounds.button", switch (this.locale) {
             case EN_US -> "Edit";
             case ZH_CN -> "编辑";
             default -> throw new IllegalStateException();
         });
-        this.add("morsneak.configuration.title", switch (this.locale) {
+        this.add(MorSneak.ID + ".configuration.title", switch (this.locale) {
             case EN_US -> "MorSneak Server Configuration";
             case ZH_CN -> "撅电报服务器配置";
             default -> throw new IllegalStateException();
         });
-        this.add("morsneak.configuration.section.morsneak.server.toml", switch (this.locale) {
+        this.add(MorSneak.ID + ".configuration.section.morsneak.server.toml", switch (this.locale) {
             case EN_US -> "MorSneak Server Configuration";
             case ZH_CN -> "撅电报服务器配置";
             default -> throw new IllegalStateException();
         });
-        this.add("morsneak.configuration.section.morsneak.server.toml.title", switch (this.locale) {
+        this.add(MorSneak.ID + ".configuration.section.morsneak.server.toml.title", switch (this.locale) {
             case EN_US -> "MorSneak Server Configuration";
             case ZH_CN -> "撅电报服务器配置";
             default -> throw new IllegalStateException();
         });
-        this.add("morsneak.configuration.buzz_sounds.tooltip", switch (this.locale) {
+        this.add(MorSneak.ID + ".configuration.buzz_sounds.tooltip", switch (this.locale) {
             case EN_US -> """
                     Configure the sounds used by the portable radio.
                     Format: <sound>[<suffix>]
