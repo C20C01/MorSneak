@@ -31,8 +31,7 @@ import java.util.List;
 
 @SuppressWarnings("NullableProblems")
 public class PortableRadioScreen extends Screen {
-    public static final Identifier RADIO_LOCATION = Identifier.fromNamespaceAndPath(MorSneak.ID, "textures/gui/portable_radio.png");
-
+    private static final Identifier RADIO_LOCATION = Identifier.fromNamespaceAndPath(MorSneak.ID, "textures/gui/portable_radio.png");
     private static final Component TITLE = Component.translatable(MorSneak.TEXT_KEY_PORTABLE_RADIO_TITLE);
 
     private static final int IMAGE_WIDTH = 176;
@@ -43,17 +42,17 @@ public class PortableRadioScreen extends Screen {
     private static final int GREEN = 0x00CC00;
     private static final int RED = 0xCC0000;
 
-    private static final Component RADIO_LABEL_OFF = Component.literal("📻").withColor(GRAY);
-    private static final Component RADIO_LABEL_ON = Component.literal("📻").withColor(GREEN);
+    private static final Component RADIO_LABEL_OFF = Component.literal("✔").withColor(GRAY).withoutShadow();
+    private static final Component RADIO_LABEL_ON = Component.literal("✔").withColor(GREEN).withoutShadow();
     private static final Tooltip RADIO_LABEL_TOOLTIP = Tooltip.create(Component.translatable(MorSneak.TEXT_KEY_PORTABLE_RADIO_SELECT_MODE));
-    private static final Component DELETE_LABEL_OFF = Component.literal("🗑").withColor(GRAY);
-    private static final Component DELETE_LABEL_ON = Component.literal("🗑").withColor(RED);
+    private static final Component DELETE_LABEL_OFF = Component.literal("🗑").withColor(GRAY).withoutShadow();
+    private static final Component DELETE_LABEL_ON = Component.literal("🗑").withColor(RED).withoutShadow();
     private static final Tooltip DELETE_LABEL_TOOLTIP = Tooltip.create(Component.translatable(MorSneak.TEXT_KEY_PORTABLE_RADIO_DELETE_MODE));
-    private static final Component SOUND_LABEL_OFF = Component.literal("🎵").withColor(GRAY);
-    private static final Component SOUND_LABEL_ON = Component.literal("🎵").withColor(GREEN);
+    private static final Component SOUND_LABEL_OFF = Component.literal("♪").withColor(GRAY).withoutShadow();
+    private static final Component SOUND_LABEL_ON = Component.literal("♪").withColor(GREEN).withoutShadow();
     private static final Tooltip SOUND_LABEL_TOOLTIP = Tooltip.create(Component.translatable(MorSneak.TEXT_KEY_PORTABLE_RADIO_SOUND_MODE));
-    private static final Component MIC_LABEL_OFF = Component.literal("🎙").withColor(RED);
-    private static final Component MIC_LABEL_ON = Component.literal("🎙").withColor(GREEN);
+    private static final Component MIC_LABEL_OFF = Component.literal("🎙").withColor(RED).withoutShadow();
+    private static final Component MIC_LABEL_ON = Component.literal("🎙").withColor(GREEN).withoutShadow();
     private static final Tooltip MIC_LABEL_TOOLTIP = Tooltip.create(Component.translatable(MorSneak.TEXT_KEY_PORTABLE_RADIO_MIC));
     private static final Component EMPTY_LABEL = Component.literal("-").withColor(DARK_GRAY);
 

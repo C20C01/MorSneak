@@ -16,8 +16,8 @@ import java.util.List;
 import java.util.function.Function;
 
 public class BuzzInstanceFactory {
-    private static final Component LOOP_SOUND_SUFFIX = Component.literal(" 🔁");
-    private static final Component RANDOM_PITCH_SUFFIX = Component.literal(" 🎲");
+    private static final Component LOOP_SOUND_SUFFIX = Component.literal(" ∞");
+    private static final Component RANDOM_PITCH_SUFFIX = Component.literal(" ⚄");
 
     private static final MutableComponent DEFAULT_TITLE = Component.translatable(MySoundDefinitionsProvider.getSoundSubtitle(MorSneak.BEEP_SOUND));
     private static final Function<Long, BuzzInstance> DEFAULT_FACTORY = seed -> new BuzzInstance(MorSneak.BEEP_SOUND.value(), true, seed);
