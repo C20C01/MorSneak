@@ -1,6 +1,5 @@
 package io.github.c20c01.cc_ms.block;
 
-import io.github.c20c01.cc_ms.MorSneak;
 import io.github.c20c01.cc_ms.block.entity.AbstractRadioBlockEntity;
 import io.github.c20c01.cc_ms.block.entity.RadioTransmitterBlockEntity;
 import io.github.c20c01.cc_ms.radio.RadioSignal;
@@ -33,7 +32,7 @@ public class RadioTransmitterBlock extends AbstractRadioBlock {
         if (!(level.getBlockEntity(pos) instanceof AbstractRadioBlockEntity radio)) return;
 
         if (radio.power != level.getBestNeighborSignal(pos)) {
-            level.scheduleTick(pos, MorSneak.RADIO_TRANSMITTER_BLOCK.get(), 2, TickPriority.EXTREMELY_HIGH);
+            level.scheduleTick(pos, this, 2, TickPriority.EXTREMELY_HIGH);
         }
     }
 
