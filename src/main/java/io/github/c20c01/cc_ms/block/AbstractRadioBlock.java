@@ -37,9 +37,12 @@ public abstract class AbstractRadioBlock extends Block implements EntityBlock {
         this.registerDefaultState(this.defaultBlockState().setValue(POWERED, false).setValue(ENABLED, false));
     }
 
-    abstract protected void onPoweredChange(Level level, BlockPos pos, AbstractRadioBlockEntity radio, byte newPower);
+    /**
+     * This is called after the power is changed and the block state is updated.
+     */
+    abstract protected void onPowerChanged(Level level, BlockPos pos, AbstractRadioBlockEntity radioBlock, byte newPower);
 
-    abstract protected byte getNewPower(Level level, BlockPos pos, AbstractRadioBlockEntity radio);
+    abstract protected byte getNewPower(Level level, BlockPos pos, AbstractRadioBlockEntity radioBlock);
 
     @Override
     public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity by, ItemStack itemStack) {
@@ -64,19 +67,18 @@ public abstract class AbstractRadioBlock extends Block implements EntityBlock {
 
     @Override
     protected void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
-        if (level.getBlockEntity(pos) instanceof AbstractRadioBlockEntity radio) {
-            byte oldPower = radio.power;
-            byte newPower = getNewPower(level, pos, radio);
-            radio.power = newPower;
-            if (oldPower != newPower) {
-                boolean powered = newPower > 0;
-                if (state.getValue(POWERED) != powered) {
-                    level.setBlock(pos, state.setValue(POWERED, powered), Block.UPDATE_ALL);
-                }
+        if (!(level.getBlockEntity(pos) instanceof AbstractRadioBlockEntity radioBlock)) return;
 
-                onPoweredChange(level, pos, radio, newPower);
-            }
+        byte oldPower = radioBlock.power;
+        byte newPower = getNewPower(level, pos, radioBlock);
+        if (oldPower == newPower) return;
+
+        radioBlock.power = newPower;
+        boolean powered = newPower > 0;
+        if (state.getValue(POWERED) != powered) {
+            level.setBlock(pos, state.setValue(POWERED, powered), Block.UPDATE_ALL);
         }
+        onPowerChanged(level, pos, radioBlock, newPower);
     }
 
     @Override

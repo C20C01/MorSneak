@@ -33,13 +33,11 @@ public class PortableRadioSession implements RadioHolder, RadioTransmitter, Radi
     }
 
     /**
-     * Tick every {@link PortableRadio} in the player's inventory, and each player can only have one active radio at a time.
+     * Tick every {@link PortableRadio} that has a selected frequency in the player's inventory,
+     * and each player can only have one active radio at a time.
      * If there are multiple radios, the first one will be used and the others will be unset.
      */
-    public void inventoryTick(ItemStack radio) {
-        GlobalPos frequency = radio.get(MorSneak.SELECTED_FREQUENCY);
-        if (frequency == null) return;
-
+    public void inventoryTick(ItemStack radio, GlobalPos frequency) {
         if (inventoryTicked) {
             radio.remove(MorSneak.SELECTED_FREQUENCY);
             return;

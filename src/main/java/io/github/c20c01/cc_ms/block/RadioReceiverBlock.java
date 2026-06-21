@@ -32,12 +32,12 @@ public class RadioReceiverBlock extends AbstractRadioBlock {
     }
 
     @Override
-    protected void onPoweredChange(Level level, BlockPos pos, AbstractRadioBlockEntity radio, byte newPower) {
+    protected void onPowerChanged(Level level, BlockPos pos, AbstractRadioBlockEntity radioBlock, byte newPower) {
         level.updateNeighborsAt(pos, this);
     }
 
     @Override
-    protected byte getNewPower(Level level, BlockPos pos, AbstractRadioBlockEntity radio) {
-        return radio.getRadio().getSignal().getPower();
+    protected byte getNewPower(Level level, BlockPos pos, AbstractRadioBlockEntity radioBlock) {
+        return radioBlock.getRadio().getSignal().getPower();
     }
 }

@@ -37,12 +37,12 @@ public class RadioTransmitterBlock extends AbstractRadioBlock {
     }
 
     @Override
-    protected void onPoweredChange(Level level, BlockPos pos, AbstractRadioBlockEntity radio, byte newPower) {
-        radio.getRadio().transmit(RadioSignal.ofPower(newPower, (RadioTransmitter) radio).initSeed());
+    protected void onPowerChanged(Level level, BlockPos pos, AbstractRadioBlockEntity radioBlock, byte newPower) {
+        radioBlock.getRadio().transmit(RadioSignal.ofPower(newPower, (RadioTransmitter) radioBlock).initSeed());
     }
 
     @Override
-    protected byte getNewPower(Level level, BlockPos pos, AbstractRadioBlockEntity radio) {
+    protected byte getNewPower(Level level, BlockPos pos, AbstractRadioBlockEntity radioBlock) {
         return (byte) level.getBestNeighborSignal(pos);
     }
 }

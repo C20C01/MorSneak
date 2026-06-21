@@ -1,6 +1,7 @@
 package io.github.c20c01.cc_ms.radio.portable;
 
 import io.github.c20c01.cc_ms.MorSneak;
+import net.minecraft.core.GlobalPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -33,11 +34,14 @@ public class PortableRadioSessionManager {
     }
 
     public void inventoryTick(ServerPlayer player, ItemStack radio) {
-        sessions.computeIfAbsent(player, PortableRadioSession::new).inventoryTick(radio);
+        GlobalPos frequency = radio.get(MorSneak.SELECTED_FREQUENCY);
+        if (frequency != null){
+            sessions.computeIfAbsent(player, PortableRadioSession::new).inventoryTick(radio, frequency);
+        }
     }
 
     public void serverPostTick() {
-        sessions.entrySet().removeIf(entry -> entry.getValue().serverPostTick());
+        sessions.values().removeIf(PortableRadioSession::serverPostTick);
     }
 
     @SubscribeEvent
