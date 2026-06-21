@@ -29,7 +29,7 @@ public class RadioTransmitterBlock extends AbstractRadioBlock {
     @Override
     protected void neighborChanged(BlockState state, Level level, BlockPos pos, Block block, @Nullable Orientation orientation, boolean movedByPiston) {
         if (level.isClientSide()) return;
-        if (level.getBlockTicks().willTickThisTick(pos, block)) return;
+        if (level.getBlockTicks().willTickThisTick(pos, this)) return;
         if (!(level.getBlockEntity(pos) instanceof AbstractRadioBlockEntity radio)) return;
 
         if (radio.power != level.getBestNeighborSignal(pos)) {
