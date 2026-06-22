@@ -128,12 +128,12 @@ public class MyLanguageProvider extends LanguageProvider {
             case ZH_CN -> "撅电报服务器配置";
             default -> throw new IllegalStateException();
         });
-        this.add(MorSneak.ID + ".configuration.section.morsneak.server.toml", switch (this.locale) {
+        this.add(MorSneak.ID + ".configuration.section." + MorSneak.ID + ".server.toml", switch (this.locale) {
             case EN_US -> "MorSneak Server Configuration";
             case ZH_CN -> "撅电报服务器配置";
             default -> throw new IllegalStateException();
         });
-        this.add(MorSneak.ID + ".configuration.section.morsneak.server.toml.title", switch (this.locale) {
+        this.add(MorSneak.ID + ".configuration.section." + MorSneak.ID + ".server.toml.title", switch (this.locale) {
             case EN_US -> "MorSneak Server Configuration";
             case ZH_CN -> "撅电报服务器配置";
             default -> throw new IllegalStateException();
