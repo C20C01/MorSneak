@@ -1,11 +1,13 @@
 package io.github.c20c01.cc_ms.config;
 
+import com.mojang.logging.LogUtils;
 import io.github.c20c01.cc_ms.MorSneak;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.sounds.SoundEvents;
 import net.neoforged.neoforge.common.ModConfigSpec;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
@@ -66,5 +68,23 @@ public class MorSneakConfig {
         if (s.equals(BEEP) || s.equals(FA)) return true; // Allow the default sounds even if they are not registered yet
         Identifier id = Identifier.tryParse(new BuzzConfigEntry(s).getLocation());
         return id != null && BuiltInRegistries.SOUND_EVENT.containsKey(id);
+    }
+
+    public static List<BuzzConfigEntry> getBuzzConfigEntries() {
+        List<? extends String> buzzStrings = BUZZ_STRINGS.get();
+        List<BuzzConfigEntry> result = new ArrayList<>();
+        int listSize = buzzStrings.size();
+        if (listSize == 0) {
+            buzzStrings = DEFAULT_BUZZ_STRINGS;
+            listSize = buzzStrings.size();
+        }
+        if (listSize > MorSneakConfig.MAX_BUZZ_SOUNDS) {
+            LogUtils.getLogger().warn("Too many buzz sounds in config, only the first {} will be used.", MorSneakConfig.MAX_BUZZ_SOUNDS);
+            listSize = MorSneakConfig.MAX_BUZZ_SOUNDS;
+        }
+        for (int i = 0; i < listSize; i++) {
+            result.add(new BuzzConfigEntry(buzzStrings.get(i)));
+        }
+        return result;
     }
 }

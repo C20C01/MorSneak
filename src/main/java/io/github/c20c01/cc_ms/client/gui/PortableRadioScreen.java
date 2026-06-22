@@ -79,7 +79,7 @@ public class PortableRadioScreen extends Screen {
     private byte signalCode;
     private byte soundCode;
 
-    private final ArrayList<GlobalPos> frequencies;
+    private final List<GlobalPos> frequencies;
     private List<Component> soundTitles;
 
     private BuzzInstance previewBuzz;

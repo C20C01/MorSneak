@@ -39,6 +39,16 @@ public class RadioBuzzer {
         return instance;
     }
 
+    @SubscribeEvent
+    public static void modConfig(ModConfigEvent.Loading event) {
+        getInstance().buzzFactory.update(MorSneakConfig.getBuzzConfigEntries());
+    }
+
+    @SubscribeEvent
+    public static void modConfig(ModConfigEvent.Reloading event) {
+        getInstance().buzzFactory.update(MorSneakConfig.getBuzzConfigEntries());
+    }
+
     public void updateSignal(byte code, long seed) {
         if (buzz != null && buzz.isLooping()) Minecraft.getInstance().getSoundManager().stop(buzz);
         if (code == RadioSignal.CODE_EMPTY) return;
@@ -55,15 +65,5 @@ public class RadioBuzzer {
 
     public BuzzInstanceFactory getBuzzFactory() {
         return buzzFactory;
-    }
-
-    @SubscribeEvent
-    public static void modConfig(ModConfigEvent.Loading event) {
-        getInstance().buzzFactory.update(MorSneakConfig.BUZZ_STRINGS.get());
-    }
-
-    @SubscribeEvent
-    public static void modConfig(ModConfigEvent.Reloading event) {
-        getInstance().buzzFactory.update(MorSneakConfig.BUZZ_STRINGS.get());
     }
 }
