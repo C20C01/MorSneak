@@ -87,7 +87,10 @@ public class PortableRadio extends Item {
     private static boolean addFrequency(ItemStack radio, GlobalPos frequency, Player player) {
         List<GlobalPos> frequencies = radio.getOrDefault(MorSneak.FREQUENCIES, List.of());
         if (frequencies.contains(frequency)) {
-            radio.set(MorSneak.SELECTED_FREQUENCY, frequency);
+            GlobalPos currentFrequency = radio.get(MorSneak.SELECTED_FREQUENCY);
+            if (!frequency.equals(currentFrequency)) {
+                radio.set(MorSneak.SELECTED_FREQUENCY, frequency);
+            }
             return true;
         }
 
