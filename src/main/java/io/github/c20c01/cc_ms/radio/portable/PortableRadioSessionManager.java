@@ -33,11 +33,8 @@ public class PortableRadioSessionManager {
         return instance;
     }
 
-    public void inventoryTick(ServerPlayer player, ItemStack radio) {
-        GlobalPos frequency = radio.get(MorSneak.SELECTED_FREQUENCY);
-        if (frequency != null){
-            sessions.computeIfAbsent(player, PortableRadioSession::new).inventoryTick(radio, frequency);
-        }
+    public void inventoryTick(ServerPlayer player, ItemStack radio, GlobalPos frequency) {
+        sessions.computeIfAbsent(player, PortableRadioSession::new).inventoryTick(radio, frequency);
     }
 
     public void serverPostTick() {

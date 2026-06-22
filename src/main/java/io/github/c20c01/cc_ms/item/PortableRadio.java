@@ -108,7 +108,10 @@ public class PortableRadio extends Item {
     @Override
     public void inventoryTick(ItemStack itemStack, ServerLevel level, Entity owner, @Nullable EquipmentSlot slot) {
         if (owner instanceof ServerPlayer player) {
-            PortableRadioSessionManager.getInstance().inventoryTick(player, itemStack);
+            GlobalPos frequency = itemStack.get(MorSneak.SELECTED_FREQUENCY);
+            if (frequency != null) {
+                PortableRadioSessionManager.getInstance().inventoryTick(player, itemStack, frequency);
+            }
         }
     }
 
