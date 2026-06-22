@@ -17,7 +17,7 @@ public class RadioChannel {
 
     protected void addReceiver(RadioReceiver receiver) {
         if (!receivers.add(receiver)) return;
-        receiver.receive(getSignal());
+        receiver.receive(getSignalToReceive());
     }
 
     protected void removeReceiver(RadioReceiver receiver) {
@@ -27,7 +27,7 @@ public class RadioChannel {
 
     protected void addTransmitter(RadioTransmitter transmitter) {
         if (!transmitters.add(transmitter)) return;
-        transmit(transmitter.getSignal());
+        transmit(transmitter.getSignalToTransmit());
     }
 
     protected void removeTransmitter(RadioTransmitter transmitter) {
@@ -39,7 +39,7 @@ public class RadioChannel {
         return receivers.isEmpty() && transmitters.isEmpty();
     }
 
-    public RadioSignal getSignal() {
+    public RadioSignal getSignalToReceive() {
         return signalDeque.isEmpty() ? RadioSignal.EMPTY_SIGNAL : signalDeque.peek();
     }
 
@@ -67,7 +67,7 @@ public class RadioChannel {
 
     private void transmit() {
         if (receivers.isEmpty()) return;
-        RadioSignal currentSignal = getSignal();
-        for (RadioReceiver receiver : receivers) receiver.receive(currentSignal);
+        RadioSignal signalToReceive = getSignalToReceive();
+        for (RadioReceiver receiver : receivers) receiver.receive(signalToReceive);
     }
 }

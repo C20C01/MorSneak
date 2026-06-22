@@ -38,6 +38,6 @@ public class RadioReceiverBlock extends AbstractRadioBlock {
 
     @Override
     protected byte getNewPower(Level level, BlockPos pos, AbstractRadioBlockEntity radioBlock) {
-        return radioBlock.getRadio().getSignal().getPower();
+        return radioBlock.getRadio().getSignalToReceive().getPower();
     }
 }

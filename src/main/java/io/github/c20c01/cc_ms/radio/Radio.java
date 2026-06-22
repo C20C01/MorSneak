@@ -30,8 +30,8 @@ public class Radio {
         }
     }
 
-    public RadioSignal getSignal() {
-        return channel == null ? RadioSignal.EMPTY_SIGNAL : channel.getSignal();
+    public RadioSignal getSignalToReceive() {
+        return channel == null ? RadioSignal.EMPTY_SIGNAL : channel.getSignalToReceive();
     }
 
     /**

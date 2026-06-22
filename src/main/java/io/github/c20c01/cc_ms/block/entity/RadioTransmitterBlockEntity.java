@@ -30,7 +30,7 @@ public class RadioTransmitterBlockEntity extends AbstractRadioBlockEntity implem
     }
 
     @Override
-    public RadioSignal getSignal() {
+    public RadioSignal getSignalToTransmit() {
         return RadioSignal.ofPower(power, this);
     }
 

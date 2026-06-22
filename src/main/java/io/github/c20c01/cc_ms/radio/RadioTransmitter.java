@@ -17,5 +17,5 @@ public interface RadioTransmitter {
      *
      * @return The signal to be transmitted, must have a non-null transmitter!
      */
-    RadioSignal getSignal();
+    RadioSignal getSignalToTransmit();
 }

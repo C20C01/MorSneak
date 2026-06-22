@@ -61,14 +61,14 @@ public class PortableRadioSession implements RadioHolder, RadioTransmitter, Radi
         }
 
         inventoryTicked = false;
-        RadioSignal signal = getSignal();
+        RadioSignal signal = getSignalToTransmit();
         if (signal != this.lastTransmitSignal) {
             radio.transmit(signal.initSeed());
             this.lastTransmitSignal = signal;
             return false;
         }
 
-        syncer.sync(radio.getSignal());
+        syncer.sync(radio.getSignalToReceive());
         return false;
     }
 
@@ -109,7 +109,7 @@ public class PortableRadioSession implements RadioHolder, RadioTransmitter, Radi
     }
 
     @Override
-    public RadioSignal getSignal() {
+    public RadioSignal getSignalToTransmit() {
         return player.isShiftKeyDown() ? defaultSignal : emptySignal;
     }
 }
