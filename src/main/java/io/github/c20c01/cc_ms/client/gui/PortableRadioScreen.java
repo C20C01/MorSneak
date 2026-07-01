@@ -268,7 +268,6 @@ public class PortableRadioScreen extends Screen {
         GlobalPos removed = frequencies.remove(index);
         if (page == getTotalPages()) page--;
         if (removed.equals(frequency)) setFrequency(null, (byte) -1);
-        radio.set(MorSneak.FREQUENCIES, frequencies);
         sendUpdates(PortableRadioUpdatePacket.REMOVE_FREQUENCY, index);
     }
 
@@ -401,14 +400,12 @@ public class PortableRadioScreen extends Screen {
     private void setSoundCode(byte soundCode) {
         if (this.soundCode == soundCode) return;
         this.soundCode = soundCode;
-        radio.set(MorSneak.SOUND_CODE, soundCode);
         sendUpdates(PortableRadioUpdatePacket.UPDATE_SOUND_CODE, soundCode);
     }
 
     private void setSignalCode(byte signalCode) {
         if (this.signalCode == signalCode) return;
         this.signalCode = signalCode;
-        radio.set(MorSneak.SIGNAL_CODE, signalCode);
         sendUpdates(PortableRadioUpdatePacket.UPDATE_SIGNAL_CODE, signalCode);
     }
 
@@ -417,7 +414,6 @@ public class PortableRadioScreen extends Screen {
      */
     private void setFrequency(@Nullable GlobalPos frequency, byte index) {
         this.frequency = frequency;
-        radio.set(MorSneak.SELECTED_FREQUENCY, frequency);
         sendUpdates(PortableRadioUpdatePacket.SELECT_FREQUENCY, index);
     }
 

@@ -60,10 +60,10 @@ public class MorSneak {
     public static final Holder<SoundEvent> BEEP_SOUND = SOUND_EVENTS.register("beep", SoundEvent::createVariableRangeEvent);
     public static final Holder<SoundEvent> FA_SOUND = SOUND_EVENTS.register("fa", SoundEvent::createVariableRangeEvent);
 
-    public static final DeferredHolder<DataComponentType<?>, DataComponentType<GlobalPos>> SELECTED_FREQUENCY = DATA_COMPONENTS.registerComponentType("selected_frequency", b -> b.persistent(GlobalPos.CODEC).networkSynchronized(GlobalPos.STREAM_CODEC).ignoreSwapAnimation().cacheEncoding());
-    public static final DeferredHolder<DataComponentType<?>, DataComponentType<List<GlobalPos>>> FREQUENCIES = DATA_COMPONENTS.registerComponentType("frequencies", b -> b.persistent(GlobalPos.CODEC.listOf()).networkSynchronized(GlobalPos.STREAM_CODEC.apply(ByteBufCodecs.list())).ignoreSwapAnimation().cacheEncoding());
-    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Byte>> SIGNAL_CODE = DATA_COMPONENTS.registerComponentType("signal_code", b -> b.persistent(Codec.BYTE).networkSynchronized(ByteBufCodecs.BYTE).ignoreSwapAnimation().cacheEncoding());
-    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Byte>> SOUND_CODE = DATA_COMPONENTS.registerComponentType("sound_code", b -> b.persistent(Codec.BYTE).networkSynchronized(ByteBufCodecs.BYTE).ignoreSwapAnimation().cacheEncoding());
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<GlobalPos>> SELECTED_FREQUENCY = DATA_COMPONENTS.registerComponentType("selected_frequency", b -> b.persistent(GlobalPos.CODEC).networkSynchronized(GlobalPos.STREAM_CODEC).cacheEncoding());
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<List<GlobalPos>>> FREQUENCIES = DATA_COMPONENTS.registerComponentType("frequencies", b -> b.persistent(GlobalPos.CODEC.listOf()).networkSynchronized(GlobalPos.STREAM_CODEC.apply(ByteBufCodecs.list())).cacheEncoding());
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Byte>> SIGNAL_CODE = DATA_COMPONENTS.registerComponentType("signal_code", b -> b.persistent(Codec.BYTE).networkSynchronized(ByteBufCodecs.BYTE).cacheEncoding());
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Byte>> SOUND_CODE = DATA_COMPONENTS.registerComponentType("sound_code", b -> b.persistent(Codec.BYTE).networkSynchronized(ByteBufCodecs.BYTE).cacheEncoding());
 
     public static final String TEXT_KEY_TAB_TITLE = "tab_title";
 

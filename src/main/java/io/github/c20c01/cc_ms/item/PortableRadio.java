@@ -41,6 +41,55 @@ public class PortableRadio extends Item {
         super(properties);
     }
 
+    private static boolean addFrequency(ItemStack radio, GlobalPos frequency, Player player) {
+        List<GlobalPos> frequencies = radio.getOrDefault(MorSneak.FREQUENCIES, List.of());
+        if (frequencies.contains(frequency)) {
+            GlobalPos currentFrequency = radio.get(MorSneak.SELECTED_FREQUENCY);
+            if (!frequency.equals(currentFrequency)) {
+                radio.set(MorSneak.SELECTED_FREQUENCY, frequency);
+            }
+            return true;
+        }
+
+        if (frequencies.size() >= MAX_FREQUENCIES) {
+            if (player.isLocalPlayer()) {
+                player.sendOverlayMessage(FULL_MESSAGE);
+                player.playSound(SoundEvents.VILLAGER_NO);
+            }
+            return false;
+        }
+
+        ArrayList<GlobalPos> newFrequencies = new ArrayList<>(frequencies);
+        newFrequencies.add(frequency);
+        radio.set(MorSneak.FREQUENCIES, newFrequencies);
+        return true;
+    }
+
+    public static void removeFrequency(ItemStack radio, byte index) {
+        List<GlobalPos> frequencies = radio.get(MorSneak.FREQUENCIES);
+        if (frequencies == null || index < 0 || index >= frequencies.size()) {
+            radio.set(MorSneak.SELECTED_FREQUENCY, null);
+            return;
+        }
+
+        ArrayList<GlobalPos> newFrequencies = new ArrayList<>(frequencies);
+        newFrequencies.remove(index);
+        radio.set(MorSneak.FREQUENCIES, newFrequencies);
+    }
+
+    /**
+     * @param index the index of the frequency to select, or -1 to deselect the current frequency
+     */
+    public static void selectFrequency(ItemStack radio, byte index) {
+        List<GlobalPos> frequencies = radio.get(MorSneak.FREQUENCIES);
+        if (frequencies == null || index < 0 || index >= frequencies.size()) {
+            radio.set(MorSneak.SELECTED_FREQUENCY, null);
+            return;
+        }
+
+        radio.set(MorSneak.SELECTED_FREQUENCY, frequencies.get(index));
+    }
+
     @Override
     public InteractionResult use(Level level, Player player, InteractionHand hand) {
         if (level.isClientSide()) {
@@ -84,30 +133,6 @@ public class PortableRadio extends Item {
         return true;
     }
 
-    private static boolean addFrequency(ItemStack radio, GlobalPos frequency, Player player) {
-        List<GlobalPos> frequencies = radio.getOrDefault(MorSneak.FREQUENCIES, List.of());
-        if (frequencies.contains(frequency)) {
-            GlobalPos currentFrequency = radio.get(MorSneak.SELECTED_FREQUENCY);
-            if (!frequency.equals(currentFrequency)) {
-                radio.set(MorSneak.SELECTED_FREQUENCY, frequency);
-            }
-            return true;
-        }
-
-        if (frequencies.size() >= MAX_FREQUENCIES) {
-            if (player.isLocalPlayer()) {
-                player.sendOverlayMessage(FULL_MESSAGE);
-                player.playSound(SoundEvents.VILLAGER_NO);
-            }
-            return false;
-        }
-
-        ArrayList<GlobalPos> newFrequencies = new ArrayList<>(frequencies);
-        newFrequencies.add(frequency);
-        radio.set(MorSneak.FREQUENCIES, newFrequencies);
-        return true;
-    }
-
     @Override
     public void inventoryTick(ItemStack itemStack, ServerLevel level, Entity owner, @Nullable EquipmentSlot slot) {
         if (owner instanceof ServerPlayer player) {
@@ -116,30 +141,5 @@ public class PortableRadio extends Item {
                 PortableRadioSessionManager.getInstance().inventoryTick(player, itemStack, frequency);
             }
         }
-    }
-
-    public static void removeFrequency(ItemStack radio, byte index) {
-        List<GlobalPos> frequencies = radio.get(MorSneak.FREQUENCIES);
-        if (frequencies == null || index < 0 || index >= frequencies.size()) {
-            radio.set(MorSneak.SELECTED_FREQUENCY, null);
-            return;
-        }
-
-        ArrayList<GlobalPos> newFrequencies = new ArrayList<>(frequencies);
-        newFrequencies.remove(index);
-        radio.set(MorSneak.FREQUENCIES, newFrequencies);
-    }
-
-    /**
-     * @param index the index of the frequency to select, or -1 to deselect the current frequency
-     */
-    public static void selectFrequency(ItemStack radio, byte index) {
-        List<GlobalPos> frequencies = radio.get(MorSneak.FREQUENCIES);
-        if (frequencies == null || index < 0 || index >= frequencies.size()) {
-            radio.set(MorSneak.SELECTED_FREQUENCY, null);
-            return;
-        }
-
-        radio.set(MorSneak.SELECTED_FREQUENCY, frequencies.get(index));
     }
 }
