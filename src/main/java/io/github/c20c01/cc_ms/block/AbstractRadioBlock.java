@@ -50,8 +50,8 @@ public abstract class AbstractRadioBlock extends Block implements EntityBlock {
             radio.power = 0;
             if (radio.getRadio().getFrequency().isPresent()) {
                 level.setBlock(pos, state.setValue(ENABLED, true), Block.UPDATE_ALL);
-                level.scheduleTick(pos, state.getBlock(), 1);
             }
+            level.scheduleTick(pos, state.getBlock(), 1);
         }
     }
 
