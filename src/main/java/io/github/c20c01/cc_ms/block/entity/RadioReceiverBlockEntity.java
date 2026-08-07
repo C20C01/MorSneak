@@ -29,7 +29,8 @@ public class RadioReceiverBlockEntity extends AbstractRadioBlockEntity implement
 
     @Override
     public @Nullable RadioChannel registerRadio(RadioManager manager, GlobalPos frequency) {
-        return hasLevel() ? manager.registerReceiver(frequency, this) : null;
+        if (level == null || level.isClientSide()) return null;
+        return manager.registerReceiver(frequency, this);
     }
 
     @Override
