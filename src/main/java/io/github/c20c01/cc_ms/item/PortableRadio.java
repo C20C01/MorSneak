@@ -117,20 +117,29 @@ public class PortableRadio extends Item {
 
     @Override
     public boolean overrideOtherStackedOnMe(ItemStack self, ItemStack other, Slot slot, ClickAction clickAction, Player player, SlotAccess carriedItem) {
-        LodestoneTracker tracker = other.get(DataComponents.LODESTONE_TRACKER);
-        if (tracker == null || tracker.target().isEmpty()) {
-            return super.overrideOtherStackedOnMe(self, other, slot, clickAction, player, carriedItem);
-        }
-
         if (clickAction != ClickAction.SECONDARY) {
             return super.overrideOtherStackedOnMe(self, other, slot, clickAction, player, carriedItem);
         }
 
-        if (addFrequency(self, tracker.target().get(), player)) {
-            player.playSound(SoundEvents.LODESTONE_COMPASS_LOCK);
+        // compass
+        LodestoneTracker tracker = other.get(DataComponents.LODESTONE_TRACKER);
+        if (tracker != null && tracker.target().isPresent()) {
+            if (addFrequency(self, tracker.target().get(), player)) {
+                player.playSound(SoundEvents.LODESTONE_COMPASS_LOCK);
+            }
+            return true;
         }
 
-        return true;
+        // portable radio
+        GlobalPos frequency = other.get(MorSneak.SELECTED_FREQUENCY);
+        if (frequency != null) {
+            if (addFrequency(self, frequency, player)) {
+                player.playSound(SoundEvents.LODESTONE_COMPASS_LOCK);
+            }
+            return true;
+        }
+
+        return super.overrideOtherStackedOnMe(self, other, slot, clickAction, player, carriedItem);
     }
 
     @Override

@@ -8,9 +8,7 @@ public interface RadioHolder {
     Radio getRadio();
 
     /**
-     * Should check {@code level != null} before calling this method.
-     * Sometimes the level may not be loaded when the radio is registered,
-     * that will cause the receiver receives code but can't act on it.
+     * Should only register a radio when the level is not null and is server side.
      */
     @Nullable
     RadioChannel registerRadio(RadioManager manager, GlobalPos frequency);
